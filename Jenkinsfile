@@ -18,7 +18,7 @@ node{
    sh 'docker build -t iampavi/myweb:0.0.2 .'
    }
    stage('Docker Image Push'){
-   withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
+   withCredentials([string(credentialsId: 'apavi435@gmail.com', variable: 'dockerPassword')]) {
    sh "docker login -u  iampavi -p ${dockerPassword}"
     }
    sh 'docker push iampavi/myweb:0.0.2'
