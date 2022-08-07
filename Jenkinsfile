@@ -15,13 +15,13 @@ node{
 	        }
 	    }
    stage('Build Docker Imager'){
-   sh 'docker build -t iampavi/myweb:0.0.2 .'
+   sh 'docker build -t iampavi/myweb'
    }
    stage('Docker Image Push'){
    withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
    sh "docker login -u  iampavi -p ${dockerPassword}"
     }
-   sh 'docker push iampavi/myweb:0.0.2'
+   sh 'docker push iampavi/myweb'
    }
    stage('Nexus Image Push'){
    sh "docker login -u admin -p admin123 3.110.103.230:8083"
@@ -35,7 +35,7 @@ node{
 		//  do nothing if there is an exception
 	}
    stage('Docker deployment'){
-   sh 'docker run -d -p 8090:8080 --name tomcattest iampavi/myweb:0.0.2' 
+   sh 'docker run -d -p 8090:8080 --name tomcattest iampavi/myweb' 
    }
 }
 }
